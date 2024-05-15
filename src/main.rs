@@ -1,10 +1,10 @@
 use std::env;
 
-fn add(a: i32, b: i32) -> i32 {
+fn add(a: f32, b: f32) -> f32 {
     return a + b;
 }
 
-fn mul(a: i32, b: i32) -> i32 {
+fn mul(a: f32, b: f32) -> f32 {
     return a * b;
 }
 
@@ -12,24 +12,24 @@ fn main() {
     let args: Vec<_> = env::args().collect();
     if args.len() > 1 {
         let operation = &args[1];
-        let mut numbers: Vec<i32> = Vec::new();
+        let mut numbers: Vec<f32> = Vec::new();
 
         // Operations
         let is_add = operation.eq("add") || operation.eq("+"); // Is Add
         let is_mul = operation.eq("mult") || operation.eq("*") || operation.eq("mul"); // Is Multiply
 
-        let mut _sum: i32 = 0;
+        let mut _sum: f32 = 0.0;
 
         if !is_add {
-            _sum = 1;
+            _sum = 1.0;
         }
 
         for n in 2..args.len() {
             let num_str = &args[n];
 
             let num = num_str
-                .parse::<i32>()
-                .expect(&format!("Failed to parse int at arg {}", n.to_string()));
+                .parse::<f32>()
+                .expect(&format!("Failed to parse float at arg ({}, value: {})", n.to_string(), num_str));
             
             // Operations
             if is_add {
